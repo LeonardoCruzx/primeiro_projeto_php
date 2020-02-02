@@ -1,5 +1,5 @@
 <?php
-    include("models/aluno.php");
+    include("../models/aluno.php");
 
     session_start();
 
@@ -9,6 +9,6 @@
     }
     $al = Aluno::authenticate($login,$senha);
     $_SESSION['user'] = serialize($al);
-    header('location:user_logged/');
+    header('location:../views/user_logged/');
 
 ?>

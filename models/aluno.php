@@ -14,6 +14,7 @@
             $this->senha = $senha;
             $this->nome = $nome;
             $this->data_nascimento = $data_nascimento;
+            return $this;
         }
 
         function get_matricula(){
@@ -37,8 +38,7 @@
         }
 
         function save(){
-            $conn = new Connection();
-            $PDO = $conn->create_connection();
+            $PDO = Connection::create_connection();
             
             if(isset($this->matricula)){
                 $sql = "UPDATE alunos SET nome = :nome, data_nascimento = :data_nascimento WHERE matricula = :matricula;";
@@ -69,8 +69,8 @@
         }
 
         static function authenticate($login,$senha){
-            $conn = new Connection();
-            $PDO = $conn->create_connection();
+            $PDO = Connection::create_connection();
+            
             $sql = "SELECT * FROM ALUNOS WHERE login = :login AND senha = :senha;";
             $stmt = $PDO->prepare( $sql );
             $stmt->bindParam(':login',$login);
@@ -81,8 +81,8 @@
                 exit;
             }
             $row = $stmt->fetch();
-            $al = new Aluno($row[1],$row[2],$row[3],$row[4]);
-            $al->set_matricula($row[0]);
+            $al = new Aluno($row['login'],$row['senha'],$row['nome'],$row['data_nascimento']);
+            $al->set_matricula($row['matricula']);
             return $al;
         }
 

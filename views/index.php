@@ -1,6 +1,6 @@
 
     <?php
-        include("models/aluno.php");
+
         /*
         function teste_bd(){
             $PDO = create_connection();
@@ -42,7 +42,7 @@
         */
         ?>
         
-        <form action="login.php" method="POST">
+        <form action="../controllers/login.php" method="POST">
             login: <input type=text name=login><br>
             senha: <input type=text name=senha><br>
         <input type=submit value="OK">

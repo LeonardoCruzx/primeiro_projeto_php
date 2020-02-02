@@ -1,7 +1,7 @@
 <?php
     class Connection{
         
-        function create_connection(){
+        static function create_connection(){
             $MYSQL_HOST = 'localhost';
             $MYSQL_USER = 'root';
             $MYSQL_PASSWORD =  '' ;
